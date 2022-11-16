@@ -3,5 +3,9 @@
         "/home/arfan/belajar-ros2/panworkspace/install/tachimawari_interfaces/lib/python3.8/site-packages",
         "/home/arfan/belajar-ros2/panworkspace/install/kansei_interfaces/lib/python3.8/site-packages",
         "/opt/ros/foxy/lib/python3.8/site-packages"
-    ]
+    ],
+    "files.associations": {
+        "*.tcc": "cpp"
+    },
+    "ros.distro": "foxy"
 }

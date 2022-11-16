@@ -1,18 +1,18 @@
+#ifndef UDP_HPP_
+#define UDP_HPP_
 #include <stdlib.h>
 #include <netinet/in.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <cstring>
-#include <arpa/inet.h>
-
-#pragma once
+#include "arpis_server/network/arpis_socket.hpp"
 
 namespace arpis_server {
 
-class udp {
-    public:
+class udp : public arpis_socket {
+public:
     udp(u_int16_t port);
-    protected:
+protected:
     sockaddr_in si_me, si_other;
+private:
 };
 }
+
+#endif
