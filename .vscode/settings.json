@@ -5,8 +5,12 @@
         "/opt/ros/foxy/lib/python3.8/site-packages"
     ],
     "files.associations": {
+<<<<<<< HEAD
         "*.tcc": "cpp",
         "iostream": "cpp"
+=======
+        "*.tcc": "cpp"
+>>>>>>> 33a65688275b3dd049175ee237b442cd9a6c77c9
     },
     "ros.distro": "foxy"
 }

@@ -5,11 +5,10 @@
 #include <cstring>
 #include <arpa/inet.h>
 #include <string>
-#include "tachimawari/joint/joint.hpp"
-#include "tachimawari/control/control.hpp"
 
-arpis_server::udp::udp(uint16_t port) : arpis_socket(AF_INET, SOCK_STREAM, 0) {    
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
+namespace arpis_server  {
+tcp::tcp(uint16_t port) : socket(AF_INET, SOCK_STREAM, 0) {    
+    int sock = ::socket(AF_INET, SOCK_STREAM, 0);
     std::cout << "starting udp server" << std::endl;
     sockaddr_in sockaddr_me, sockadr_other;
     bzero(&sockaddr_me, sizeof(sockaddr_me));
@@ -59,7 +58,7 @@ arpis_server::udp::udp(uint16_t port) : arpis_socket(AF_INET, SOCK_STREAM, 0) {
     // int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     // memset(&si_me, '\0', sizeof(si_me));
     // memset(&si_other, '\0', sizeof(si_other));
-    // si_me.sin_family = AF_INET;
+    // si_me.sin_fa{mily = AF_INET;
     // si_me.sin_port = htons(port);
     // si_me.sin_addr.s_addr = inet_addr("127.0.0.1");
     // int status = bind(sockfd, (sockaddr*)&si_me, sizeof(si_me));            
@@ -75,4 +74,5 @@ arpis_server::udp::udp(uint16_t port) : arpis_socket(AF_INET, SOCK_STREAM, 0) {
     // // sendto(sockfd, (char*)hello, strlen(hello), MSG_CONFIRM, (sockaddr*)&si_other, len);
 
     // std::cout << "sended from server" << std::endl;
+};
 }

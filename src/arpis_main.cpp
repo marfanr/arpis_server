@@ -15,7 +15,7 @@ class ServerNode : public rclcpp::Node {
   protected:
   private:
   void exec() {
-    arpis_server::udp(8080);
+    arpis_server::tcp(8080);
   }
   rclcpp::TimerBase::SharedPtr timer_;    
 };

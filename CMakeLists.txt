@@ -22,7 +22,7 @@ find_package(tachimawari REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   "src/${PROJECT_NAME}/network/tcp.cpp"
-  "src/${PROJECT_NAME}/network/arpis_socket.cpp"
+  "src/${PROJECT_NAME}/network/socket.cpp"
 )
 
 install(DIRECTORY "include" DESTINATION ".")

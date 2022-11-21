@@ -5,9 +5,9 @@
 #include <vector>
 
 namespace arpis_server {
-class arpis_socket {
+class socket {
 public:
-    arpis_socket(int domain, int type, int protocol);    
+    socket(int domain, int type, int protocol);    
     int get_socket();        
     int sock_bind(int sockid);
     void register_sockaddr(sockaddr_in * sockaddr);
