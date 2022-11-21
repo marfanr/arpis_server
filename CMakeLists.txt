@@ -17,6 +17,7 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(arpis_network REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tachimawari REQUIRED)
 
@@ -28,6 +29,7 @@ add_library(${PROJECT_NAME} SHARED
 install(DIRECTORY "include" DESTINATION ".")
 
 ament_target_dependencies(${PROJECT_NAME}
+  "arpis_network"
   "rclcpp"
   "tachimawari"
 )

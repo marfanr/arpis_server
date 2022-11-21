@@ -1,21 +1,21 @@
 #include <chrono>
 #include <string>
-#include "rclcpp/rclcpp.hpp"
-#include "arpis_server/network/tcp.hpp"
+#include <sys/socket.h>
 #include "tachimawari/control/control.hpp"
+#include "rclcpp/rclcpp.hpp"
+#include "arpis_network/socket/socket.hpp"
 
 using namespace std::chrono_literals;
-
 class ServerNode : public rclcpp::Node {
-  public:
+public:
   ServerNode() : Node("server_node") {
     // timer_ = this->create_wall_timer(300ms, std::bind(&ServerNode::exec, this));
     this->exec();
   }
-  protected:
-  private:
+protected:
+private:
   void exec() {
-    arpis_server::tcp(8080);
+    auto socket = arpis_network::socket(AF_INET, SOCK_STREAM, 0);
   }
   rclcpp::TimerBase::SharedPtr timer_;    
 };

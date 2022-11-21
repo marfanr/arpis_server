@@ -7,7 +7,7 @@
 namespace arpis_server {
 class socket {
 public:
-    socket(int domain, int type, int protocol);    
+    socket(int domain, int type, int protocol);
     int get_socket();        
     int sock_bind(int sockid);
     void register_sockaddr(sockaddr_in * sockaddr);
