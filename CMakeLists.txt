@@ -17,9 +17,10 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(arpis_network REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tachimawari REQUIRED)
+find_package(arpis_network REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   "src/${PROJECT_NAME}/network/tcp.cpp"
@@ -32,6 +33,7 @@ ament_target_dependencies(${PROJECT_NAME}
   "arpis_network"
   "rclcpp"
   "tachimawari"
+  "geometry_msgs"  
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

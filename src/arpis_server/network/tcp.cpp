@@ -7,6 +7,7 @@
 #include <string>
 
 namespace arpis_server  {
+
 tcp::tcp(uint16_t port) : socket(AF_INET, SOCK_STREAM, 0) {    
     int sock = ::socket(AF_INET, SOCK_STREAM, 0);
     std::cout << "starting udp server" << std::endl;
@@ -44,35 +45,6 @@ tcp::tcp(uint16_t port) : socket(AF_INET, SOCK_STREAM, 0) {
 
     std::cout << "test" << std::endl;
 
-
-
-
-    // std::cout 
-    // auto l = this->receive(1024, MSG_WAITALL, 1);
-    // char buffer[1024];
-    // socklen_t t = sizeof(sockaddr_other);
-
-    // recvfrom(this->get_socket(), (char *)buffer, 1024, MSG_WAITALL, (sockaddr*)&sockaddr_other, &t);
-    // std::cout << (std::string)buffer << std::endl;
-    
-    // int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-    // memset(&si_me, '\0', sizeof(si_me));
-    // memset(&si_other, '\0', sizeof(si_other));
-    // si_me.sin_fa{mily = AF_INET;
-    // si_me.sin_port = htons(port);
-    // si_me.sin_addr.s_addr = inet_addr("127.0.0.1");
-    // int status = bind(sockfd, (sockaddr*)&si_me, sizeof(si_me));            
-    // // socklen_t addrzie = sizeof(si_me);
-    // char buffer[1024];
-    // // strcpy(buffer, "HELLO \n");
-    // socklen_t len = sizeof(si_other);
-    // char *hello = "hello from server";
-    // std::cout << "waiting client..." << std::endl;
-    // recvfrom(sockfd, (char*)buffer, 1024, MSG_WAITALL, (sockaddr*)&si_other, &len);
-    // std::string msg = buffer;    
-    // std::cout << msg << std::endl;
-    // // sendto(sockfd, (char*)hello, strlen(hello), MSG_CONFIRM, (sockaddr*)&si_other, len);
-
-    // std::cout << "sended from server" << std::endl;
 };
+
 }
