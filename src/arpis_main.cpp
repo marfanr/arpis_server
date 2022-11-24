@@ -26,6 +26,7 @@ public:
       timer_ = this->create_wall_timer(8ms, std::bind(&ServerNode::read_join, this));        
     else if (i == 2) {
       this->generate_dummy();
+      timer_ = this->create_wall_timer(800ms, std::bind(&ServerNode::read_dummy, this));        
     }
   }
   
@@ -45,14 +46,32 @@ private:
     }
   }  
 
+  void read_dummy() {    
+    auto dummy = dummy_item_[dummy_readed];
+    arpis_transfer_item i;
+    i.id = dummy.id;
+    i.position = dummy.position;
+    tcp->send((char *)(void *)&i, sizeof(i));            
+    dummy_readed += 1;
+  }  
+
   void generate_dummy() {
-    dummy_item_[0] = {id: 0, position: 30.0};
-    dummy_item_[1] = {id: 0, position: 30.0};
-    dummy_item_[2] = {id: 0, position: 30.0};
-    dummy_item_[3] = {id: 0, position: 30.0};
-    dummy_item_[4] = {id: 0, position: 30.0};
-    dummy_item_[5] = {id: 0, position: 30.0};
-    dummy_item_[6] = {id: 0, position: 30.0};
+    dummy_item_[0] = {id: 20, position: 10.0};
+    dummy_item_[1] = {id: 19, position: 20.0};
+    dummy_item_[2] = {id: 15, position: 10.0};
+    dummy_item_[3] = {id: 1, position: 20.0};
+    dummy_item_[4] = {id: 4, position: 70.0};
+    dummy_item_[5] = {id: 2, position: 0.0};
+    dummy_item_[6] = {id: 5, position: 60.0};
+    dummy_item_[7] = {id: 20, position: 60.0};
+    dummy_item_[8] = {id: 16, position: 60.0};
+    dummy_item_[9] = {id: 14, position: 20.0};
+    dummy_item_[10] = {id: 12, position: 60.0};
+    dummy_item_[11] = {id: 11, position: 10.0};
+    dummy_item_[12] = {id: 1, position: 30.0};
+    dummy_item_[13] = {id: 4, position: 10.0};
+    dummy_item_[14] = {id: 3, position: 20.0};
+    dummy_item_[15] = {id: 4, position: 30.0};
   }
 
   arpis_network::tcp * tcp;
@@ -60,6 +79,7 @@ private:
   std::shared_ptr<tachimawari::control::ControlManager> control_;
   std::shared_ptr<tachimawari::joint::JointManager> joint_manager_;
   arpis_transfer_item dummy_item_[100];
+  int dummy_readed = 0;
 };
 
 
@@ -78,9 +98,9 @@ int main(int argc, char ** argv)
     id = 2;
   
   auto node = std::make_shared<ServerNode>(id);
-  node->close();
   rclcpp::spin(node);  
- rclcpp::shutdown();
+  node->close();
+  rclcpp::shutdown();
 
   return 0;
 }
