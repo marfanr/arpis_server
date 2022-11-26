@@ -12,19 +12,31 @@ using namespace std::chrono_literals;
 
 struct arpis_transfer_item {
   int id;
-  float position;
+  int position;
+};
+
+struct arpis {
+  arpis_transfer_item i[22];
 };
 
 class ServerNode : public rclcpp::Node {
 public:
   ServerNode(int i) : Node("server_node") {    
-    tcp = new arpis_network::tcp("127.0.0.1", 3030);    
+    // this->tcp = new arpis_network::tcp("192.168.100.3", 3333);    
+    this->tcp = new arpis_network::tcp("127.0.0.1", 3333);    
+    tcp->set_max_con(3);
     tcp->serve();        
     control_ = std::make_shared<tachimawari::control::DynamixelSDK>("/dev/ttyUSB0"); // sdk only    
     joint_manager_ = std::make_shared<tachimawari::joint::JointManager>(control_);
-    if (i == 1)
-      timer_ = this->create_wall_timer(8ms, std::bind(&ServerNode::read_join, this));        
-    else if (i == 2) {
+    if (i == 1) {
+      if (!control_->connect()) {
+        control_->set_port("/dev/ttyUSB1");
+        if (!control_->connect()) {
+          RCLCPP_ERROR(rclcpp::get_logger("arpis_server"), "failed connect sdk");
+        }
+      }
+      timer_ = this->create_wall_timer(1s, std::bind(&ServerNode::read_join, this));        
+    }  else if (i == 2) {
       this->generate_dummy();
       timer_ = this->create_wall_timer(800ms, std::bind(&ServerNode::read_dummy, this));        
     }
@@ -38,47 +50,48 @@ protected:
 private:
   void read_join() {
     auto joints = joint_manager_->get_current_joints();
+    arpis item;
+    int pos = 0;
     for (auto joint: joints) {
-      arpis_transfer_item i;
-      i.id = static_cast<int>(joint.get_id());
-      i.position = joint.get_position();
-      tcp->send((char *)(void *)&i, sizeof(i));        
+      RCLCPP_INFO(rclcpp::get_logger("arpis_server"), "s %i : %i", joint.get_id(), joint.get_position_value());          
+      item.i[pos].id = static_cast<int>(joint.get_id());
+      item.i[pos].position = joint.get_position_value();
+    //   i.id = static_cast<int>(joint.get_id());
+    //   i.position = joint.get_position_value();
+    //   item[pos] = i;
+      pos+=1;
     }
+      tcp->send(reinterpret_cast<char *>(&item), sizeof(arpis));        
   }  
 
   void read_dummy() {    
+    // int pos = 0;
+    arpis item;
     auto dummy = dummy_item_[dummy_readed];
-    arpis_transfer_item i;
-    i.id = dummy.id;
-    i.position = dummy.position;
-    tcp->send((char *)(void *)&i, sizeof(i));            
+    for (int i = 0; i < 22; i++) {
+      item.i[i].id= dummy[i].id;
+      item.i[i].position = dummy[i].position;
+      // pos += 1;
+    }
+    // i.id = dummy.id;
+    // i.position = dummy.position;
+    tcp->send((char *)(void *)&item, sizeof(item));            
     dummy_readed += 1;
   }  
 
   void generate_dummy() {
-    dummy_item_[0] = {id: 20, position: 10.0};
-    dummy_item_[1] = {id: 19, position: 20.0};
-    dummy_item_[2] = {id: 15, position: 10.0};
-    dummy_item_[3] = {id: 1, position: 20.0};
-    dummy_item_[4] = {id: 4, position: 70.0};
-    dummy_item_[5] = {id: 2, position: 0.0};
-    dummy_item_[6] = {id: 5, position: 60.0};
-    dummy_item_[7] = {id: 20, position: 60.0};
-    dummy_item_[8] = {id: 16, position: 60.0};
-    dummy_item_[9] = {id: 14, position: 20.0};
-    dummy_item_[10] = {id: 12, position: 60.0};
-    dummy_item_[11] = {id: 11, position: 10.0};
-    dummy_item_[12] = {id: 1, position: 30.0};
-    dummy_item_[13] = {id: 4, position: 10.0};
-    dummy_item_[14] = {id: 3, position: 20.0};
-    dummy_item_[15] = {id: 4, position: 30.0};
+    dummy_item_[0][0] = {id: 20, position: 4096};
+    dummy_item_[0][1] = {id: 19, position: 4096};
+    dummy_item_[0][2] = {id: 19, position: 4096};
+    dummy_item_[0][3] = {id: 15, position: 4096};
+    
   }
 
   arpis_network::tcp * tcp;
   rclcpp::TimerBase::SharedPtr timer_;  
   std::shared_ptr<tachimawari::control::ControlManager> control_;
   std::shared_ptr<tachimawari::joint::JointManager> joint_manager_;
-  arpis_transfer_item dummy_item_[100];
+  arpis_transfer_item dummy_item_[100][100];
   int dummy_readed = 0;
 };
 
@@ -99,9 +112,8 @@ int main(int argc, char ** argv)
   
   auto node = std::make_shared<ServerNode>(id);
   rclcpp::spin(node);  
-  node->close();
+  // node->close();
   rclcpp::shutdown();
 
   return 0;
 }
-
