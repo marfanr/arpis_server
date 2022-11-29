@@ -122,22 +122,22 @@ private:
       }
     }
     dummy_item_[0][0] = {id: 1, position: 2069};
-    dummy_item_[0][1] = {id: 1, position: 2080};
+    dummy_item_[0][1] = {id: 2, position: 2780};
     dummy_item_[0][2] = {id: 1, position: 2100};
-    dummy_item_[0][3] = {id: 1, position: 1970};
-    dummy_item_[0][4] = {id: 1, position: 2400};
-    dummy_item_[0][5] = {id: 1, position: 2600};
-    dummy_item_[0][6] = {id: 1, position: 2080};
-    dummy_item_[0][7] = {id: 1, position: 2090};   
+    dummy_item_[0][3] = {id: 2, position: 2670};
+    dummy_item_[0][4] = {id: 1, position: 2300};
+    dummy_item_[0][5] = {id: 2, position: 2000};
+    dummy_item_[0][6] = {id: 1, position: 1080};
+    dummy_item_[0][7] = {id: 2, position: 2090};   
     dummy_item_[0][8] = {id: 1, position: 2090};   
-    dummy_item_[0][9] = {id: 1, position: 2090};   
+    dummy_item_[0][9] = {id: 2, position: 2090};   
     dummy_item_[0][10] = {id: 1, position: 2090};   
-    dummy_item_[0][11] = {id: 1, position: 2090};   
+    dummy_item_[0][11] = {id: 2, position: 2090};   
     dummy_item_[0][12] = {id: 1, position: 2100};   
-    dummy_item_[0][13] = {id: 1, position: 2100};   
+    dummy_item_[0][13] = {id: 2, position: 2700};   
     dummy_item_[0][14] = {id: 1, position: 2100};   
-    dummy_item_[0][15] = {id: 1, position: 2100};   
-    dummy_item_[0][16] = {id: 2, position: 2500};   
+    dummy_item_[0][15] = {id: 2, position: 2100};   
+    dummy_item_[0][16] = {id: 1, position: 2500};   
     dummy_item_[0][17] = {id: 2, position: 2300};   
     dummy_item_[0][18] = {id: 2, position: 2500};   
     dummy_item_[0][19] = {id: 2, position: 2700};   
