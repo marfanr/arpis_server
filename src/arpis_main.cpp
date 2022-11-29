@@ -180,16 +180,18 @@ int main(int argc, char ** argv)
   }
 
   
-  auto node = std::make_shared<ServerNode>(id, addr, port);
-  rclcpp::executors::MultiThreadedExecutor exec;
-  exec.add_node(node);
-  rclcpp::Rate rcl_rate(8ms);
-  while(rclcpp::ok()) {
-    rcl_rate.sleep();
-    exec.spin_some();  
-  }
-  // node->close();
-  rclcpp::shutdown();
+  // auto node = std::make_shared<ServerNode>(id, addr, port);
+  auto node  = std::make_shared<rclcpp::Node>("arpis_server");
 
-  return 0;
+  // rclcpp::executors::MultiThreadedExecutor exec;
+  // exec.add_node(node);
+  // rclcpp::Rate rcl_rate(8ms);
+  // while(rclcpp::ok()) {
+  //   rcl_rate.sleep();
+  //   exec.spin_some();  
+  // }
+  // // node->close();
+  // rclcpp::shutdown();
+
+  // return 0;
 }

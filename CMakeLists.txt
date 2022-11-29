@@ -23,8 +23,7 @@ find_package(arpis_network REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
-  "src/${PROJECT_NAME}/network/tcp.cpp"
-  "src/${PROJECT_NAME}/network/socket.cpp"
+  "src/${PROJECT_NAME}/node/server_node.cpp"
 )
 
 install(DIRECTORY "include" DESTINATION ".")
