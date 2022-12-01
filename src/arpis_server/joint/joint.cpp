@@ -7,7 +7,13 @@ Joint::Joint() {}
 
 void Joint::load_data() {}
 
-void Joint::publish(arpis_network::tcp * tcp) {}
+arpis Joint::publish() {}
+
+void Joint::increment() {}
+
+void Joint::set_position(int pos) {}
+
+int Joint::get_iteration() {return 0;}
 
 Joint::~Joint() {}
 

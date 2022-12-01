@@ -10,7 +10,6 @@
 #include "rclcpp/rclcpp.hpp"
 #include "arpis_server/model/arpis.hpp"
 #include "arpis_server/joint/joint.hpp"
-#include "arpis_network/tcp/tcp.hpp"
 
 namespace arpis_server{
 
@@ -18,12 +17,13 @@ class Tachimawari : public Joint {
 public:    
     Tachimawari(int mode);
     void load_data();
-    void publish(::arpis_network::tcp * tcp);
+    arpis publish();
     ~Tachimawari() override;
 protected:
     std::shared_ptr<::tachimawari::control::ControlManager> control_manager_;
     std::shared_ptr<::tachimawari::joint::JointManager> joint_manager_;
 private:
+    int mode;
 };
 
 }

@@ -19,8 +19,6 @@ public:
     void setup();
     void set_read_mode(int mode);
 protected:
-    std::shared_ptr<::tachimawari::control::ControlManager> control_manager_;
-    std::shared_ptr<::tachimawari::joint::JointManager> joint_manager_;
     std::shared_ptr<Joint> joint_;
     void read_joint_from_tachimawari();
     void read_joint_from_dummy();
@@ -30,8 +28,6 @@ private:
     std::shared_ptr<rclcpp::Node> node_;    
     int id = 0;
     rclcpp::TimerBase::SharedPtr timer_;
-    arpis_transfer_item dummy_item_[1000][20];
-    int dummy_readed = 0;
 };
 
 }

@@ -4,11 +4,18 @@
 namespace arpis_server {
 
 Tachimawari::Tachimawari(int mode) {
-
+    if (mode < 0 || mode > 2) {
+        RCLCPP_ERROR(rclcpp::get_logger("arpis_esrver/joint/Tachimawari"), "invalid mode");
+        exit(0);
+    }
+    this->mode = mode;
 }
 
 void Tachimawari::load_data() {
-    control_manager_ = std::make_shared<::tachimawari::control::DynamixelSDK>("/dev/ttyUSB0");
+    if (this->mode == 0)
+        control_manager_ = std::make_shared<::tachimawari::control::DynamixelSDK>("/dev/ttyUSB0");
+    else
+        control_manager_ = std::make_shared<::tachimawari::control::CM740>("/dev/ttyUSB0");
     joint_manager_ = std::make_shared<::tachimawari::joint::JointManager>(control_manager_);
     if (!control_manager_->connect()) {
         control_manager_->set_port("/dev/ttyUSB1");

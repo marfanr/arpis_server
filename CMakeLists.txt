@@ -27,6 +27,8 @@ add_library(${PROJECT_NAME} SHARED
   "src/${PROJECT_NAME}/joint/joint.cpp"  
   "src/${PROJECT_NAME}/joint/tachimawari/connector.cpp"
   "src/${PROJECT_NAME}/joint/tachimawari/reader.cpp"  
+  "src/${PROJECT_NAME}/joint/dummy/connector.cpp"  
+  "src/${PROJECT_NAME}/joint/dummy/reader.cpp"  
 )
 
 install(DIRECTORY "include" DESTINATION ".")

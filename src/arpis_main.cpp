@@ -27,8 +27,10 @@ int main(int argc, char ** argv)
     id = 2;
   else if (argv[1] == (std::string)"cm740")
     id = 3;
-  else
-    RCLCPP_ERROR(rclcpp::get_logger("arpis_server"), "failied id, please specify use sdk, dummy, or cm740");
+  else {
+    RCLCPP_ERROR(rclcpp::get_logger("arpis_server"), "invalid id, please specify use SDK, Dummy, or CM740");
+    exit(0);
+  }
 
   const char * addr = "127.0.0.1";
   int port = 3000;
