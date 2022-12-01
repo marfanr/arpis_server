@@ -44,7 +44,7 @@ int main(int argc, char ** argv)
   
   // auto node = std::make_shared<ServerNode>(id, addr, port);    
   rclcpp::Node::SharedPtr node  = std::make_shared<rclcpp::Node>("arpis_server");
-  arpis_server::server_node * server = new arpis_server::server_node(node, addr, port);
+  arpis_server::ServerNode * server = new arpis_server::ServerNode(node, addr, port);
   server->set_read_mode(id);
   server->setup();
 

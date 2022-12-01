@@ -9,17 +9,19 @@
 #include "tachimawari/joint/protocol_1/mx28_address.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "arpis_server/model/arpis.hpp"
+#include "arpis_server/joint/joint.hpp"
 
 namespace arpis_server {
 
-class server_node {
+class ServerNode {
 public:
-    server_node(rclcpp::Node::SharedPtr node, const char *addr, int port);
+    ServerNode(rclcpp::Node::SharedPtr node, const char *addr, int port);
     void setup();
     void set_read_mode(int mode);
 protected:
-    std::shared_ptr<tachimawari::control::ControlManager> control_manager_;
-    std::shared_ptr<tachimawari::joint::JointManager> joint_manager_;
+    std::shared_ptr<::tachimawari::control::ControlManager> control_manager_;
+    std::shared_ptr<::tachimawari::joint::JointManager> joint_manager_;
+    std::shared_ptr<Joint> joint_;
     void read_joint_from_tachimawari();
     void read_joint_from_dummy();
     void set_dummy();
