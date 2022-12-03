@@ -29,7 +29,7 @@ add_library(${PROJECT_NAME} SHARED
   "src/${PROJECT_NAME}/joint/tachimawari/reader.cpp"  
   "src/${PROJECT_NAME}/joint/dummy/connector.cpp"  
   "src/${PROJECT_NAME}/joint/dummy/reader.cpp"  
-  "src/${PROJECT_NAME}/utils/arg_parser.cpp"  
+  "src/${PROJECT_NAME}/utils/arg_parser.cpp" 
 )
 
 install(DIRECTORY "include" DESTINATION ".")

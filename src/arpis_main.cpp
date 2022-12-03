@@ -11,6 +11,7 @@ int main(int argc, char ** argv)
     return 0;
   }  
 
+
   rclcpp::Node::SharedPtr node  = std::make_shared<rclcpp::Node>("arpis_server");
   arpis_server::ServerNode * server = new arpis_server::ServerNode(
     node, 
@@ -29,6 +30,5 @@ int main(int argc, char ** argv)
   }
   
   rclcpp::shutdown();
-
   return 0;
 }

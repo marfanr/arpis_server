@@ -1,14 +1,6 @@
 #ifndef SERVER_NODE_
 #define SERVER_NODE_
 
-#include "rclcpp/rclcpp.hpp"
-#include "arpis_network/tcp/tcp.hpp"
-#include "tachimawari/control/control.hpp"
-#include "tachimawari/joint/joint.hpp"
-#include "tachimawari/joint/model/joint_id.hpp"
-#include "tachimawari/joint/protocol_1/mx28_address.hpp"
-#include "rclcpp/rclcpp.hpp"
-#include "arpis_server/model/arpis.hpp"
 #include "arpis_server/joint/joint.hpp"
 
 namespace arpis_server {

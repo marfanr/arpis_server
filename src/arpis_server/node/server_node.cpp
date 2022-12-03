@@ -12,6 +12,7 @@ ServerNode::ServerNode(rclcpp::Node::SharedPtr node, const char *addr, int port)
   tcp_->serve();    
 }
 
+
 void ServerNode::setup() {
     using namespace std::chrono_literals;
 
