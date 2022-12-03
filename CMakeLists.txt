@@ -24,6 +24,12 @@ find_package(geometry_msgs REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   "src/${PROJECT_NAME}/node/server_node.cpp"
+  "src/${PROJECT_NAME}/joint/joint.cpp"  
+  "src/${PROJECT_NAME}/joint/tachimawari/connector.cpp"
+  "src/${PROJECT_NAME}/joint/tachimawari/reader.cpp"  
+  "src/${PROJECT_NAME}/joint/dummy/connector.cpp"  
+  "src/${PROJECT_NAME}/joint/dummy/reader.cpp"  
+  "src/${PROJECT_NAME}/utils/arg_parser.cpp" 
 )
 
 install(DIRECTORY "include" DESTINATION ".")
