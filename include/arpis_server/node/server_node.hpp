@@ -1,6 +1,8 @@
 #ifndef SERVER_NODE_
 #define SERVER_NODE_
 
+#include <memory>
+#include "rclcpp/rclcpp.hpp" 
 #include "arpis_server/joint/joint.hpp"
 
 namespace arpis_server {
