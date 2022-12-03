@@ -21,19 +21,19 @@ void ServerNode::setup() {
     case 1: /* SDK */
         joint_ = std::make_shared<Tachimawari>(1);
         joint_->load_data();
-        timer_ = node_->create_wall_timer(8ms, std::bind(&ServerNode::read_joint_from_tachimawari, this));
+        timer_ = node_->create_wall_timer(1ms, std::bind(&ServerNode::read_joint_from_tachimawari, this));
         break;    
 
     case 2: /* Dummy */
       joint_ = std::make_shared<Dummy>();
       joint_->load_data(); 
-      timer_ = node_->create_wall_timer(8ms, std::bind(&ServerNode::read_joint_from_dummy, this));        
+      timer_ = node_->create_wall_timer(1ms, std::bind(&ServerNode::read_joint_from_dummy, this));        
       break;
     
     case 3: /* CM740 */
         joint_ = std::make_shared<Tachimawari>(2);
         joint_->load_data();       
-        timer_ = node_->create_wall_timer(8ms, std::bind(&ServerNode::read_joint_from_tachimawari, this));
+        timer_ = node_->create_wall_timer(1ms, std::bind(&ServerNode::read_joint_from_tachimawari, this));
         break;
 
     default:
@@ -53,9 +53,9 @@ void ServerNode::read_joint_from_tachimawari() {
 
 void ServerNode::read_joint_from_dummy() {
   auto item = this->joint_->publish();
-  this->joint_->increment();
   tcp_->send((char *)(void *)&item, sizeof(item));            
-  if (this->joint_->get_iteration() == 2) // limit to 2 looping 
+  this->joint_->increment();
+  if (this->joint_->get_iteration() == 8) // limit to 2 looping 
     this->joint_->set_position(0);
 }
 
