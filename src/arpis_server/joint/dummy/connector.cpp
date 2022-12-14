@@ -13,8 +13,8 @@ void Dummy::load_data() {
             this->dummy_item_[i][x].position = 2048;
         }
     }
-    this->dummy_item_[0][0] = {id : 1, position : 2248};
-    this->dummy_item_[0][1] = {id : 2, position : 2048};
+    this->dummy_item_[0][0] = {id : 1, position : 2348};
+    this->dummy_item_[0][1] = {id : 2, position : 2348};
     this->dummy_item_[0][2] = {id : 3, position : 2048};
     this->dummy_item_[0][3] = {id : 4, position : 2048};
     this->dummy_item_[0][4] = {id : 5, position : 2048};
@@ -34,8 +34,8 @@ void Dummy::load_data() {
     this->dummy_item_[0][18] = {id : 19, position : 2048};
     this->dummy_item_[0][19] = {id : 20, position : 2048};
 
-    this->dummy_item_[1][0] = {id : 1, position : 2248};
-    this->dummy_item_[1][1] = {id : 2, position : 2048};
+    this->dummy_item_[1][0] = {id : 1, position : 2348};
+    this->dummy_item_[1][1] = {id : 2, position : 2348};
     this->dummy_item_[1][2] = {id : 3, position : 2048};
     this->dummy_item_[1][3] = {id : 4, position : 2048};
     this->dummy_item_[1][4] = {id : 5, position : 2048};
@@ -73,8 +73,8 @@ void Dummy::load_data() {
     this->dummy_item_[2][15] = {id : 16, position : 2048};
     this->dummy_item_[2][16] = {id : 17, position : 2048};
     this->dummy_item_[2][17] = {id : 18, position : 2048};
-    this->dummy_item_[2][18] = {id : 19, position : 2048};
-    this->dummy_item_[2][19] = {id : 20, position : 2048};
+    this->dummy_item_[2][18] = {id : 19, position : 2348};
+    this->dummy_item_[2][19] = {id : 20, position : 2148};
 
     this->dummy_item_[3][0] = {id : 1, position : 2048};
     this->dummy_item_[3][1] = {id : 2, position : 2048};
@@ -94,8 +94,8 @@ void Dummy::load_data() {
     this->dummy_item_[3][15] = {id : 16, position : 2048};
     this->dummy_item_[3][16] = {id : 17, position : 2048};
     this->dummy_item_[3][17] = {id : 18, position : 2048};
-    this->dummy_item_[3][18] = {id : 19, position : 2048};
-    this->dummy_item_[3][19] = {id : 20, position : 2048};
+    this->dummy_item_[3][18] = {id : 19, position : 2348};
+    this->dummy_item_[3][19] = {id : 20, position : 2448};
 
     this->dummy_item_[4][0] = {id : 1, position : 2048};
     this->dummy_item_[4][1] = {id : 2, position : 2048};
